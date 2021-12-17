@@ -19,10 +19,21 @@ test('renders component without errors', () => {
 });
 
 test('renders headline, author from the article when passed in through props', () => {
+    render(<Article article={articleTest}/>)
+
+    const headline = screen.queryByText(/headline test/i);
+    const author = screen.queryByText(/author test/i);
+    const summary = screen.queryByText(/summary test/i);
+    const body = screen.queryByText(/body test/i);
+
+    expect(headline).toBeInTheDocument();
+    expect(author).toBeInTheDocument();
+    expect(summary).toBeInTheDocument();
+    expect(body).toBeInTheDocument();
 });
 
-// test('renders "Associated Press" when no author is given', ()=> {
-// });
+test('renders "Associated Press" when no author is given', ()=> {
+});
 
 // test('executes handleDelete when the delete button is pressed', ()=> {
 // });
