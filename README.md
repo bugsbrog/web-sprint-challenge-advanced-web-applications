@@ -95,9 +95,9 @@ In this project, you will demonstrate your mastery of these skills by creating *
 ### Advanced Testing
 > *Add the following tests within Article.test.js.*
 * [X] Build a test that shows the `Article` component, given the correct props, can render without errors.
-* [ ] Build a test that shows that when a correctly formatted article is passed into the `Article` component, the correct headline, author, summary and body are displayed.
-* [ ] The `Article` component should display "Associated Press" when an author attribute is not available. Build a test that verifies that that is true.
-* [ ] Build a test that show that when the deleteButton is pressed on an Article, the handleDelete functional property is executed.
+* [X] Build a test that shows that when a correctly formatted article is passed into the `Article` component, the correct headline, author, summary and body are displayed.
+* [X] The `Article` component should display "Associated Press" when an author attribute is not available. Build a test that verifies that that is true.
+* [X] Build a test that show that when the deleteButton is pressed on an Article, the handleDelete functional property is executed.
 
 ## Important Notes:
 * You are welcome to create additional files but **do not move or rename existing files** or folders.
@@ -118,8 +118,19 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+"After the user properly authenticates (properly logs in), the server returns the token. Your application needs to save the returned token (the permissions) to localStorage, so that the above axiosWithAuth module can grab it for other calls that require the Authorization header" (lambdaschool.com).
+
 2. What steps can you take in your web apps to keep your data secure?
+
+You can use tokens in your web apps to keep your data secure.
 
 3. Describe how web servers work.
 
-4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+Computers connect to the internet by the (WWW), locates an individual server through a domain name and URL, and it retrieves information from the server. (lambdaschool.com)
+
+4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers?
+
+CRUD = Create-Read-Update-Delete
+
+POST & PUT ("C" in CRUD), GET ("R" in CRUD), PUT ("U" in CRUD), DELETE ("D" in CRUD).
+
