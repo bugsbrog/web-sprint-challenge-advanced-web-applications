@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
+    const { push } = useHistory();
+
+    const [info, setInfo] = useState({
+        credentials: {
+            username: '',
+            password: ''
+        }
+    });
+
+    const [error, setError] = useState("");
+
+    const handleChange = evt => {
+        setInfo({
+            credentials: {
+                ...info.credentials,
+                [evt.target.name]: evt.target.value
+            }
+        });
+    };
+
+    const login = evt => {
+        evt.preventDefault();
+        axios.post('http://localhost:5001/api/login', info.credentials)
+            .then(res => {
+                console.log(res)
+            })
+    }
     
     return(<ComponentContainer>
         <ModalContainer>
