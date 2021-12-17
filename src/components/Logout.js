@@ -10,6 +10,8 @@ const Logout = () => {
             .post('/logout')
             .then(resp => {
                 localStorage.removeItem('token');
+                localStorage.removeItem('username');
+                localStorage.removeItem('role');
                 push('/login');
             });
     }, []);
