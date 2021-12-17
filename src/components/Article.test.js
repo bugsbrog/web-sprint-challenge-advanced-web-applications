@@ -14,6 +14,13 @@ const articleTest = {
     body: 'body test'
 }
 
+const associatedPrTest = {
+    headline: 'headline test',
+    author: '',
+    summary: 'summary test',
+    body: 'body test'
+}
+
 test('renders component without errors', () => {
     render(<Article article={articleTest}/>)
 });
@@ -27,16 +34,40 @@ test('renders headline, author from the article when passed in through props', (
     const body = screen.queryByText(/body test/i);
 
     expect(headline).toBeInTheDocument();
+    expect(headline).toBeTruthy();
+    expect(headline).not.toBeFalsy();
+
     expect(author).toBeInTheDocument();
+    expect(author).toBeTruthy();
+    expect(author).not.toBeFalsy();
+
     expect(summary).toBeInTheDocument();
+    expect(summary).toBeTruthy();
+    expect(summary).not.toBeFalsy();
+
     expect(body).toBeInTheDocument();
+    expect(body).toBeTruthy();
+    expect(body).not.toBeFalsy();
 });
 
-test('renders "Associated Press" when no author is given', ()=> {
+test('renders "Associated Press" when no author is given', () => {
+    render(<Article article={associatedPrTest}/>)
+
+    const randomAuthor = screen.queryByText(/Associated Press/i);
+
+    expect(randomAuthor).toBeInTheDocument();
+    expect(randomAuthor).toBeTruthy();
+    expect(randomAuthor).not.toBeFalsy();
 });
 
-// test('executes handleDelete when the delete button is pressed', ()=> {
-// });
+test('executes handleDelete when the delete button is pressed', () => {
+    const handleDelete = jest.fn();
 
-//Task List:
-//1. Complete all above tests. Create test article data when needed.
+    render(<Article article={articleTest} handleDelete={handleDelete}/>);
+
+    const button = screen.queryByTestId('deleteButton');
+    userEvent.click(button);
+
+    expect(handleDelete).toHaveBeenCalled();
+
+});
