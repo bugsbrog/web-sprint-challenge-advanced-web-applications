@@ -26,7 +26,7 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:5001/api/login`, info.credentials)
+        axios.post(`http://localhost:5000/api/login`, info.credentials)
             .then(res => {
                 const { token, username } = res.data
                 localStorage.setItem("token", token);
@@ -45,8 +45,7 @@ const Login = () => {
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
             <p id="error">{error.error}</p>
-            <FormGroup>
-            <form onSubmit={handleLogin}>
+            <FormGroup onSubmit={handleLogin}>
                 <Label>Username:</Label>
                 <Input
                     type="text"
@@ -66,7 +65,6 @@ const Login = () => {
                     onChange={handleChange}
                 />
                 <Button id="submit">Log in</Button>
-            </form>
             </FormGroup>
         </ModalContainer>
     </ComponentContainer>);
