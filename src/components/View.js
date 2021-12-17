@@ -16,7 +16,7 @@ const View = (props) => {
                 setArticles(res.data);
             })
             .catch(err => {
-                console.error(err)
+                console.error(err);
             })
     }, []);
 
@@ -31,15 +31,22 @@ const View = (props) => {
     };
 
     const handleEdit = (article) => {
-
-    }
+        axiosWithAuth().put(`/articles/${editId}`, article)
+            .then(res => {
+                setEditing(!editing);
+                setArticles(res.data);
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    };
 
     const handleEditSelect = (id) => {
         setEditing(true);
         setEditId(id);
     }
 
-    const handleEditCancel = () =>{
+    const handleEditCancel = () => {
         setEditing(false);
     }
 
