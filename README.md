@@ -21,7 +21,7 @@ In this challenge you will create a login page and request a token from the serv
 In this project, you will demonstrate your mastery of these skills by creating **a login page** and **basic CRUD application.** You will implement basic security using **token authentication** and build private routes within the application.
 
 ### API Documentation
-* **[POST]** * to `http://localhost:5000/api/login`: returns a the current authentication information of the user. Pass in the following credentials as the `body` of the request: `{ username: 'Lambda', password: 'School' }` for a successful login.
+* **[POST]** * to `http://localhost:5000/api/login`: returns the current authentication information of the user. Pass in the following credentials as the `body` of the request: `{ username: 'Lambda', password: 'School' }` for a successful login.
 
 * **[POST]** * to `http://localhost:5000/api/logout`: returns the expired authentication information of the user.
 
@@ -70,7 +70,7 @@ In this project, you will demonstrate your mastery of these skills by creating *
 * [ ] Display an appropriate error message when login is not successful.
 
 ### Route Authentication
-* [ ] Build a `PrivateRoute` component within the components folder.
+* [X] Build a `PrivateRoute` component within the components folder.
 * [ ] Use the `PrivateRoute` component to build a route rendering `View.js` to the path `/view`.
 * [ ] Use the `PrivateRoute` component to build a route rendering `Logout.js` to the path `/logout`.
 
