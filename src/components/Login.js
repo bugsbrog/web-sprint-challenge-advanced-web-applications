@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
-    const { push } = useHistory();
 
     const [info, setInfo] = useState({
         credentials: {
@@ -12,30 +11,63 @@ const Login = () => {
             password: ''
         }
     });
+    const [error, setError] = useState('');
+    const { push } = useHistory();
 
-    const [error, setError] = useState("");
-
-    const handleChange = evt => {
+    const handleChange = (e) => {
         setInfo({
+            ...info,
             credentials: {
                 ...info.credentials,
-                [evt.target.name]: evt.target.value
+                [e.target.name]: e.target.value
             }
-        });
-    };
+        })
+    }
 
-    const login = evt => {
-        evt.preventDefault();
-        axios.post('http://localhost:5001/api/login', info.credentials)
+    const handleLogin = (e) => {
+        e.preventDefault();
+        axios.post(`http://localhost:5001/api/login`, info.credentials)
             .then(res => {
-                console.log(res)
+                const { token, username } = res.data
+                localStorage.setItem("token", token);
+                localStorage.setItem("username", username);
+                push('/view');
+            })
+            .catch(err => {
+                console.error(err);
+                setError(err.response.data);
             })
     }
-    
+
+
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
+            <p id="error">{error.error}</p>
+            <FormGroup>
+            <form onSubmit={handleLogin}>
+                <Label>Username:</Label>
+                <Input
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Enter a username"
+                    value={info.credentials.username}
+                    onChange={handleChange}
+                />
+                <Label>Password:</Label>
+                <Input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Enter a password"
+                    value={info.credentials.password}
+                    onChange={handleChange}
+                />
+                <Button id="submit">Log in</Button>
+            </form>
+            </FormGroup>
         </ModalContainer>
     </ComponentContainer>);
 }
