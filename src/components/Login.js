@@ -9,9 +9,13 @@ const Login = () => {
         credentials: {
             username: '',
             password: ''
-        }
+        },
     });
-    const [error, setError] = useState('');
+        const initialErr = {
+            error: ""
+        }
+
+    const [error, setError] = useState(initialErr);
     const { push } = useHistory();
 
     const handleChange = (e) => {
@@ -28,9 +32,10 @@ const Login = () => {
         e.preventDefault();
         axios.post(`http://localhost:5000/api/login`, info.credentials)
             .then(res => {
-                const { token, username } = res.data
+                const { token, username, role } = res.data
                 localStorage.setItem("token", token);
                 localStorage.setItem("username", username);
+                localStorage.setItem("role", role);
                 push('/view');
             })
             .catch(err => {
